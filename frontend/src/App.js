@@ -5,7 +5,8 @@ import Signup from './components/Signup';
 import Login from './components/Login';
 import UserPage from './components/UserPage';
 import Home from './components/Home';
-import Navbar from './components/Navbar'; // Import Navbar
+import Navbar from './components/Navbar';
+import AdminDashboard from './components/AdminDashboard';
 import './App.css';
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
           <Route path="/user/:username" element={<UserPage />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
         </Routes>
       </div>
     </Router>

@@ -16,13 +16,15 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(Config)
 
+    # Initialize extensions
     db.init_app(app)
     bcrypt.init_app(app)
     jwt.init_app(app)
-    CORS(app)  # Add this line to enable CORS
     migrate.init_app(app, db)
+    CORS(app)  # Add this line to enable CORS
 
+    # Register blueprints
     from backend.routes import auth_bp
-    app.register_blueprint(auth_bp)  # No URL prefix to handle root URL
+    app.register_blueprint(auth_bp, url_prefix='/auth')  # Prefix routes with /auth
 
     return app

@@ -1,6 +1,5 @@
 // src/components/Signup.js
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './Signup.css';
 
 const Signup = () => {
@@ -9,10 +8,9 @@ const Signup = () => {
     email: '',
     password: '',
     confirmPassword: '',
-    role: 'ticket_user', // Default role
+    role: 'ticket_user',
   });
   const [message, setMessage] = useState('');
-  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,30 +19,19 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await fetch('http://localhost:5000/auth/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username: formData.username,
-          email: formData.email,
-          password: formData.password,
-          confirm_password: formData.confirmPassword,
-          role: formData.role,
-        }),
-      });
+    const response = await fetch('http://localhost:5000/auth/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    });
 
-      const data = await response.json();
-      if (response.ok) {
-        setMessage('User created successfully!');
-        navigate('/login');
-      } else {
-        setMessage(data.error);
-      }
-    } catch (error) {
-      setMessage('An error occurred. Please try again.');
+    const data = await response.json();
+    if (response.ok) {
+      setMessage('Account created successfully! Awaiting approval if you are an admin or IT helper.');
+    } else {
+      setMessage(data.error);
     }
   };
 
@@ -94,9 +81,15 @@ const Signup = () => {
         </div>
         <div className="form-group">
           <label>Role</label>
-          <select name="role" value={formData.role} onChange={handleChange} required>
+          <select
+            name="role"
+            value={formData.role}
+            onChange={handleChange}
+            required
+          >
             <option value="ticket_user">Ticket User</option>
             <option value="it_helper">IT Helper</option>
+            <option value="admin">Admin</option>
           </select>
         </div>
         <button type="submit" className="signup-btn">Sign Up</button>

@@ -1,4 +1,3 @@
-// src/components/Login.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
@@ -29,8 +28,30 @@ const Login = () => {
 
       const data = await response.json();
       if (response.ok) {
-        localStorage.setItem('token', data.access_token);
-        navigate(`/user/${formData.username}`);
+        const token = data.access_token;
+        localStorage.setItem('token', token);
+        fetchUserRole(token);
+      } else {
+        setMessage(data.error);
+      }
+    } catch (error) {
+      setMessage('An error occurred. Please try again.');
+    }
+  };
+
+  const fetchUserRole = async (token) => {
+    try {
+      const response = await fetch('http://localhost:5000/auth/userinfo', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        navigate(`/user/${formData.username}`, { state: { role: data.role } });
       } else {
         setMessage(data.error);
       }

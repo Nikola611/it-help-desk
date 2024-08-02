@@ -1,7 +1,10 @@
 # backend/config.py
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class Config:
-    SQLALCHEMY_DATABASE_URI = 'mysql://root:CEN3031@34.46.43.14/it_help_desk'
+    SQLALCHEMY_DATABASE_URI = os.getenv('SQLALCHEMY_DATABASE_URI')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     JWT_SECRET_KEY = os.urandom(24)
