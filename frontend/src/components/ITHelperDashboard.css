@@ -1,0 +1,43 @@
+/* src/components/ITHelperDashboard.css */
+
+.it-helper-dashboard {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .it-helper-dashboard h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .ticket-section {
+    margin-bottom: 30px;
+  }
+  
+  .ticket-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #444;
+  }
+  
+  .ticket-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .ticket-section li {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    color: #555;
+  }
+  
+  .calendar-section {
+    margin-top: 30px;
+  }
+  

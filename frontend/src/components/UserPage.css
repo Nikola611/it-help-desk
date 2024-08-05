@@ -62,3 +62,18 @@
     padding: 20px;
   }
   
+/* Assuming your CSS setup includes this */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  background: #f4f4f4;
+  height: 100%;
+  padding: 20px;
+}
+
+.main-content {
+  margin-left: 220px;
+  padding: 20px;
+}

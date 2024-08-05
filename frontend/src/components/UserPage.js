@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './UserPage.css';
+import UserDashboard from './UserDashboard';
 
 const UserPage = () => {
   const { username } = useParams();
@@ -54,12 +55,17 @@ const UserPage = () => {
       <div className="header">
         <div>
           <h1>{username}</h1>
-          <p className="user-role">{role === 'it_helper' ? 'IT Helper' : role === 'admin' ? 'Admin' : 'Ticket User'}</p>
+          <p className="user-role">
+            {role === 'it_helper' ? 'IT Helper' : role === 'admin' ? 'Admin' : 'Ticket User'}
+          </p>
         </div>
         <button className="logout-btn" onClick={handleLogout}>
           Logout
         </button>
       </div>
+      {role === 'ticket_user' && (
+        <UserDashboard />
+      )}
       {role === 'it_helper' && (
         <div className="calendar-container">
           <Calendar />

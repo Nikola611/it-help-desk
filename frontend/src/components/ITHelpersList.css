@@ -1,0 +1,23 @@
+.it-helpers-list ul {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); /* Adjust minmax for button width */
+    grid-gap: 10px; /* Spacing between buttons */
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  
+  .it-helpers-list li {
+    background-color: #007BFF; /* Bootstrap primary blue */
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s;
+  }
+  
+  .it-helpers-list li:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  

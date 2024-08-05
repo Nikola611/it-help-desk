@@ -1,3 +1,4 @@
+// src/components/Login.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
@@ -51,7 +52,14 @@ const Login = () => {
 
       const data = await response.json();
       if (response.ok) {
-        navigate(`/user/${formData.username}`, { state: { role: data.role } });
+        // Navigate based on the role
+        if (data.role === 'ticket_user') {
+          navigate(`/user/${formData.username}`);
+        } else if (data.role === 'it_helper') {
+          navigate('/it-helper');
+        } else if (data.role === 'admin') {
+          navigate('/admin/dashboard');
+        }
       } else {
         setMessage(data.error);
       }
