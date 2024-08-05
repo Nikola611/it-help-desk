@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './ITHelpersList.css';  // Ensure you have the CSS file in the same directory
+import './ITHelpersList.css';
 
 function ITHelpersList({ onSelectHelper }) {
   const [helpers, setHelpers] = useState([]);

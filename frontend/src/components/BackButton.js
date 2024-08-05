@@ -1,13 +1,13 @@
 // src/components/BackButton.js
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './BackButton.css'; // Create a CSS file for styling
+import './BackButton.css';
 
 const BackButton = () => {
   const navigate = useNavigate();
 
   const handleBackClick = () => {
-    navigate(-1); // Navigate to the previous page
+    navigate(-1);
   };
 
   return (

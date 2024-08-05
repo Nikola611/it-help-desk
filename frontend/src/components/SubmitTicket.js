@@ -29,7 +29,7 @@ const SubmitTicket = () => {
     const data = await response.json();
     if (response.ok) {
       setMessage('Ticket created successfully!');
-      setFormData({ title: '', description: '', duration: '' }); // Reset form
+      setFormData({ title: '', description: '', duration: '' });
     } else {
       setMessage(data.error);
     }

@@ -75,7 +75,7 @@ def create_ticket():
         new_ticket = Ticket(
             title=data['title'],
             description=data['description'],
-            duration=10,  # Default duration
+            duration=10,
             user_id=user.id,
             approved_by_admin=False
         )
@@ -111,7 +111,6 @@ def find_available_time(helper, duration):
     work_start = datetime.now().replace(hour=9, minute=0, second=0, microsecond=0)
     work_end = datetime.now().replace(hour=17, minute=0, second=0, microsecond=0)
 
-    # Fetch all tickets assigned to the helper, sorted by scheduled time
     tickets = Ticket.query.filter_by(assigned_to=helper.id).order_by(Ticket.scheduled_time).all()
 
     current_time = work_start
@@ -209,12 +208,10 @@ def update_ticket_time(ticket_id):
     if not ticket:
         return jsonify({'error': 'Ticket not found'}), 404
 
-    # Update ticket duration and mark duration_set as True to indicate admin has set it
     ticket.duration = new_duration
     ticket.duration_set = True
     db.session.commit()
 
-    # Optionally reassign the ticket based on the new duration if necessary
     assign_ticket_to_helper(ticket)
 
     return jsonify({'message': 'Ticket duration updated and marked as set by admin'}), 200
@@ -388,8 +385,6 @@ def approve_and_delete_ticket(ticket_id):
     ticket = Ticket.query.get(ticket_id)
     if not ticket or ticket.user_id != user.id:
         return jsonify({'error': 'Ticket not found or not authorized'}), 404
-
-    # Optional: Perform any cleanup or finalization here before deleting the ticket
 
     db.session.delete(ticket)
     db.session.commit()

@@ -7,14 +7,12 @@ const TicketSubmissionForm = ({ onSubmit }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Make sure to send the required fields
     const ticketData = {
       title,
       description,
-      duration: 10, // Default duration for submission
+      duration: 10,
     };
 
-    // Pass the ticket data to the onSubmit handler
     onSubmit(ticketData);
   };
 

@@ -27,8 +27,6 @@ class User(db.Model):
     tickets_assigned = db.relationship('Ticket', foreign_keys='Ticket.assigned_to', backref='assignee', lazy=True)
     sent_messages = db.relationship('MessageModel', backref='sender', lazy=True)
 
-# backend/models.py
-
 class Ticket(db.Model):
     __tablename__ = 'tickets'
 
@@ -40,9 +38,9 @@ class Ticket(db.Model):
     scheduled_time = db.Column(db.DateTime, nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     assigned_to = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=True)
-    status = db.Column(db.String(20), default='Pending')  # 'Pending', 'Assigned', 'Completed'
-    approved_by_admin = db.Column(db.Boolean, default=False)  # New field for admin approval
-    time_estimate = db.Column(db.Integer, nullable=True)  # Time estimate set by admin
+    status = db.Column(db.String(20), default='Pending')
+    approved_by_admin = db.Column(db.Boolean, default=False)
+    time_estimate = db.Column(db.Integer, nullable=True)
 
     # Relationships
     messages = db.relationship('MessageModel', backref='ticket', lazy=True)

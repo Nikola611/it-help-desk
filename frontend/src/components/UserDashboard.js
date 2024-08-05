@@ -24,7 +24,7 @@ const UserDashboard = () => {
       });
       const data = await response.json();
       if (response.ok) {
-        setSubmittedTickets(data.tickets || []); // Ensure tickets are always an array
+        setSubmittedTickets(data.tickets || []);
       } else {
         setMessage(data.error || 'Failed to fetch submitted tickets.');
       }
@@ -52,7 +52,7 @@ const UserDashboard = () => {
       });
       if (response.ok) {
         setMessage('Ticket approved and deleted successfully');
-        fetchSubmittedTickets(); // Refresh the list after deletion
+        fetchSubmittedTickets();
       } else {
         const errorData = await response.json();
         setMessage(errorData.error || 'Failed to delete ticket.');
